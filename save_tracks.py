@@ -9,6 +9,14 @@ import os
 import math
 import json
 
+CEND    = '\33[0m'
+CRED    = '\33[31m'
+CGREEN  = '\33[32m'
+CYELLOW = '\33[33m'
+CBLUE   = '\33[34m'
+CVIOLET = '\33[35m'
+CBEIGE  = '\33[36m'
+CWHITE  = '\33[37m'
 
 def Main():
     os.environ["SPOTIPY_CLIENT_ID"]='6762886347a94279b49ef02426037de6'
@@ -29,12 +37,16 @@ def Main():
     token = util.prompt_for_user_token(arg.username, scope)
 
     if token:
+        if(arg.verbose):
+            print("Token succesfull generated")
         # To find how many tracks are stpred
-        cantidad_x_pag = 2 # Max Value accepted formo API
+        cantidad_x_pag = 50 # Max Value accepted formo API
         cantidad_pag = 0
         sp = spotipy.Spotify(auth=token)
         results = sp.current_user_saved_tracks(1)
 
+        # Print data in jason format. Transform Unicode to string FOR TEST
+        # print("{} result to get".format(json.dumps(results)))
         # Save data in jason format. Transform Unicode to string FOR TEST
         # print(json.dumps(results))
 
@@ -57,7 +69,8 @@ def Main():
 
             for item in results['items']:
                 track = item['track']
-                print(track['name'].encode('utf-8') + ' - ' + track['artists'][0]['name'].encode('utf-8'))
+                if(arg.verbose):
+                    print("["+ CGREEN + "+" + CEND + "]" + track['name'].encode('utf-8') + ' - ' + track['artists'][0]['name'].encode('utf-8'))
                 f.write(track['name'].encode('utf-8') + ' - ' + track['artists'][0]['name'].encode('utf-8') + '\n')
 
 
