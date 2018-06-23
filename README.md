@@ -9,10 +9,12 @@ Use of python to backup in txt format the music you got on spotify
 ``python save_tracks.py unsername``
 It's save a txt file with the music you've saved on spotify. Not your list.
 
-# ToDo
-* Let the user chose different formtas of output
-* Optimize the code....a lot.
-* Add verbose option (Now is on by default)
-* lunch it with docker..
+``Run python save_tracks.py -h`` for help
 
-* Think of more idias 
+# ToDo
+* Let the user chose different formtas of output (JSON, CVS, TXT )
+* Optimize the code.
+* Option for ampunt of tracks to export
+* Clean the code
+* lunch it with docker..
+* Think of more ideas
