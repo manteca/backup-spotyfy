@@ -46,12 +46,13 @@ def Main():
         results = sp.current_user_saved_tracks(1)
 
         # Print data in jason format. Transform Unicode to string FOR TEST
-        # print("{} result to get".format(json.dumps(results)))
+        if(arg.verbose):
+            print("{} result to get".format(results["total"])
         # Save data in jason format. Transform Unicode to string FOR TEST
         # print(json.dumps(results))
 
         total =  results["total"]
-        cantidad_pag = 1 # int(math.ceil(total / (cantidad_x_pag *1.0)))
+        cantidad_pag = int(math.ceil(total / (cantidad_x_pag *1.0)))
         f = open('lista_musica.txt', 'w')
 
         # TODO: User can select if they wannt these output
