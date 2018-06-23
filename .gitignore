@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#MyOwn
+lista_musica.txt
+Respaldo
+spotipy
+.cache*
