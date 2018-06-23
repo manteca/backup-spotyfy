@@ -3,6 +3,7 @@
 import sys
 import spotipy
 import spotipy.util as util
+import options
 
 import os
 import math
@@ -14,26 +15,26 @@ os.environ["SPOTIPY_REDIRECT_URI"]='http://localhost'
 
 scope = 'user-library-read'
 
-if len(sys.argv) > 1:
-    username = sys.argv[1]
-else:
-    print("Usage: %s username" % (sys.argv[0],))
-    sys.exit()
+# if len(sys.argv) > 1:
+#     username = sys.argv[1]
+# else:
+#     print("Usage: %s username" % (sys.argv[0],))
+#     sys.exit()
 
+arg = options.get_parameters()
 
 # Promt for user permission
-token = util.prompt_for_user_token(username, scope)
+token = util.prompt_for_user_token(arg.username, scope)
 
 if token:
     # To find how many tracks are stpred
-    cantidad_x_pag = 50 # Max Value accepted formo API
+    cantidad_x_pag = 2 # Max Value accepted formo API
     cantidad_pag = 0
     sp = spotipy.Spotify(auth=token)
     results = sp.current_user_saved_tracks(1)
 
     # Save data in jason format. Transform Unicode to string FOR TEST
-    print(json.dumps(results))
-    exit(0)
+    # print(json.dumps(results))
 
     total =  results["total"]
     cantidad_pag = 1 # int(math.ceil(total / (cantidad_x_pag *1.0)))
